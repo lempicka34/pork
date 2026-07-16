@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>竹記商行｜頂級國產豬肉採購指南</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        obsidian: '#0D0F13',
+        charcoal: '#15181F',
+        panel: '#1B1F28',
+        champagne: '#D9B87C',
+        champagneDeep: '#B08D4F',
+        rosegold: '#C9977E',
+        cream: '#F2EBDD',
+        muted: '#8B8F99'
+      },
+      fontFamily: {
+        serif: ['"Noto Serif TC"', 'serif'],
+        sans: ['"Noto Sans TC"', 'sans-serif'],
+        latin: ['"Cormorant Garamond"', 'serif']
+      }
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background:#0D0F13; }
+  .gold-line { background: linear-gradient(90deg, transparent, #D9B87C, transparent); height:1px; }
+  .gold-frame { border:1px solid rgba(217,184,124,.35); }
+  .gold-frame:hover { border-color: rgba(217,184,124,.8); box-shadow: 0 0 24px rgba(217,184,124,.12); }
+  .hero-glow { background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(201,151,126,.14), transparent 70%); }
+  .meat-photo { background-size:cover; background-position:center; }
+  .fade-up { opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease; }
+  .fade-up.show { opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity:1; transform:none; transition:none; }
+    html { scroll-behavior:auto; }
+  }
+  /* 光譜儀 */
+  .spectrum-track {
+    background: linear-gradient(90deg, #E8EFF5 0%, #EADFC3 45%, #D9B87C 70%, #B08D4F 100%);
+    height:6px; border-radius:9999px;
+    box-shadow: 0 0 18px rgba(217,184,124,.45);
+  }
+  .spectrum-dot {
+    width:14px; height:14px; border-radius:9999px;
+    background:#0D0F13; border:2px solid #D9B87C; cursor:pointer;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .spectrum-dot:hover, .spectrum-dot:focus-visible, .spectrum-dot.active {
+    transform:scale(1.5); box-shadow:0 0 16px rgba(217,184,124,.9); outline:none; background:#D9B87C;
+  }
+  .tab-btn.active { color:#D9B87C; border-color:#D9B87C; background:rgba(217,184,124,.08); }
+  table.matrix td, table.matrix th { border:1px solid rgba(217,184,124,.25); }
+  :focus-visible { outline:2px solid #D9B87C; outline-offset:2px; }
+</style>
+</head>
+<body class="font-sans text-cream antialiased">
+
+<!-- ===== NAV ===== -->
+<header class="fixed top-0 inset-x-0 z-50 bg-obsidian/85 backdrop-blur border-b border-champagne/15">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-baseline gap-2">
+      <span class="font-serif font-black text-xl tracking-widest text-champagne">竹記商行</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-cream/75">
+      <a href="#trust" class="hover:text-champagne transition">信任基石</a>
+      <a href="#catalog" class="hover:text-champagne transition">產品目錄</a>
+      <a href="#b2b" class="hover:text-champagne transition">商用分切</a>
+      <a href="#guide" class="hover:text-champagne transition">料理指南</a>
+      <a href="#contact" class="ml-2 px-4 py-2 border border-champagne/60 text-champagne hover:bg-champagne hover:text-obsidian transition rounded-sm">聯絡採購</a>
+    </nav>
+    <a href="#contact" class="md:hidden text-champagne text-sm border border-champagne/60 px-3 py-1.5 rounded-sm">詢價</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="top" class="relative min-h-screen flex items-center hero-glow overflow-hidden pt-16">
+  <div class="absolute inset-0 opacity-[.07]" style="background-image:radial-gradient(rgba(217,184,124,.6) 1px, transparent 1px); background-size:44px 44px;"></div>
+  <div class="max-w-7xl mx-auto px-5 py-20 grid md:grid-cols-12 gap-12 items-center relative">
+    <div class="md:col-span-6 fade-up show">
+      <p class="font-latin italic tracking-[.35em] text-rosegold text-sm mb-5">PRODUCT CATALOG &amp; CULINARY GUIDE</p>
+      <h1 class="font-serif font-black text-4xl sm:text-5xl lg:text-6xl leading-tight">
+        建立專屬您的<br><span class="text-champagne">頂級供應鏈</span>
+      </h1>
+      <div class="gold-line my-7 max-w-sm"></div>
+      <p class="text-cream/80 text-lg leading-relaxed max-w-lg">
+        從牧場到餐桌，我們只交付一種標準——極致。<br class="hidden sm:block">
+        100% 台灣國產電宰豬隻，為大規模餐飲採購與極致料理追求，提供最穩定、安全的頂級食材。
+      </p>
+      <div class="flex flex-wrap gap-4 mt-9">
+        <a href="#catalog" class="px-7 py-3.5 bg-champagne text-obsidian font-medium tracking-wider hover:bg-champagneDeep transition rounded-sm">探索頂級肉品</a>
+        <a href="#contact" class="px-7 py-3.5 border border-champagne/60 text-champagne tracking-wider hover:bg-champagne/10 transition rounded-sm">聯絡採購</a>
+      </div>
+      <p class="mt-10 text-muted text-xs tracking-widest">竹記商行｜新竹・深耕數十年</p>
+    </div>
+    <div class="md:col-span-6 fade-up show">
+      <div class="relative mx-auto max-w-md md:max-w-none">
+        <div class="absolute -inset-3 border border-champagne/40 rotate-2 rounded-sm"></div>
+        <div class="absolute -inset-3 border border-champagne/20 -rotate-2 rounded-sm"></div>
+        <div class="meat-photo aspect-[4/3] rounded-sm relative"
+             style="background-image:linear-gradient(160deg, rgba(13,15,19,.15), rgba(13,15,19,.45)), url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop');">
+          <div class="absolute bottom-4 left-4 bg-obsidian/80 backdrop-blur px-4 py-2 text-xs tracking-widest text-champagne border border-champagne/40">
+            油花分布・職人精細分切
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 認證標章列 ===== -->
+<section class="border-y border-champagne/15 bg-charcoal">
+  <div class="max-w-7xl mx-auto px-5 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div class="fade-up"><p class="text-champagne font-serif text-lg">台灣豬認證</p><p class="text-muted text-xs mt-1">100% 國產電宰豬隻</p></div>
+    <div class="fade-up"><p class="text-champagne font-serif text-lg">雲林快樂豬</p><p class="text-muted text-xs mt-1">重視動物福祉</p></div>
+    <div class="fade-up"><p class="text-champagne font-serif text-lg">ISO 22000</p><p class="text-muted text-xs mt-1">食品安全管理系統</p></div>
+    <div class="fade-up"><p class="text-champagne font-serif text-lg">HACCP</p><p class="text-muted text-xs mt-1">危害分析重要管制點</p></div>
+  </div>
+</section>
+
+<!-- ===== 信任基石 ===== -->
+<section id="trust" class="py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <p class="font-latin italic tracking-[.3em] text-rosegold text-sm text-center">TRUST FOUNDATION</p>
+    <h2 class="font-serif font-black text-3xl md:text-4xl text-center mt-3">信任基石：餐桌前的第一道防線</h2>
+    <div class="gold-line max-w-xs mx-auto my-8"></div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="gold-frame rounded-sm p-8 bg-panel/60 transition fade-up">
+        <div class="text-champagne text-3xl mb-4">◈</div>
+        <h3 class="font-serif text-xl text-champagne">100% 台灣國產電宰豬隻</h3>
+        <p class="text-cream/70 mt-3 leading-relaxed text-sm">嚴格挑選優質農場，從源頭確保豬隻健康，全程國產、來源透明可溯。</p>
+      </div>
+      <div class="gold-frame rounded-sm p-8 bg-panel/60 transition fade-up">
+        <div class="text-champagne text-3xl mb-4">❋</div>
+        <h3 class="font-serif text-xl text-champagne">雲林快樂豬認證</h3>
+        <p class="text-cream/70 mt-3 leading-relaxed text-sm">重視動物福祉的飼養哲學——更好的環境與照護，造就更優質、更純粹的肉質表現。</p>
+      </div>
+      <div class="gold-frame rounded-sm p-8 bg-panel/60 transition fade-up">
+        <div class="text-champagne text-3xl mb-4">✦</div>
+        <h3 class="font-serif text-xl text-champagne">零動物用藥殘留</h3>
+        <p class="text-cream/70 mt-3 leading-relaxed text-sm">定期送驗，保證無乙型受體素（萊克多巴胺）等化學藥劑，讓每一口都安心無虞。</p>
+      </div>
+    </div>
+
+    <!-- 安全迴圈四工序 -->
+    <div class="mt-20">
+      <h3 class="font-serif text-2xl text-center">最高規格的<span class="text-champagne">安全迴圈</span></h3>
+      <p class="text-center text-cream/60 text-sm mt-3">在符合 ISO 22000 及 HACCP 規範的廠區內，每一道工序皆由獸醫師與品管嚴格把關。</p>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-5 mt-10">
+        <div class="text-center fade-up">
+          <div class="w-16 h-16 mx-auto rounded-full border border-champagne/50 flex items-center justify-center font-serif text-champagne text-xl">壹</div>
+          <h4 class="font-serif text-lg mt-4 text-champagne">屠宰</h4>
+          <p class="text-cream/60 text-xs mt-2 leading-relaxed">防檢局駐點獸醫師<br>檢驗合格</p>
+        </div>
+        <div class="text-center fade-up">
+          <div class="w-16 h-16 mx-auto rounded-full border border-champagne/50 flex items-center justify-center font-serif text-champagne text-xl">貳</div>
+          <h4 class="font-serif text-lg mt-4 text-champagne">急速冷凍</h4>
+          <p class="text-cream/60 text-xs mt-2 leading-relaxed">鎖住細胞水分<br>完美保留鮮甜</p>
+        </div>
+        <div class="text-center fade-up">
+          <div class="w-16 h-16 mx-auto rounded-full border border-champagne/50 flex items-center justify-center font-serif text-champagne text-xl">參</div>
+          <h4 class="font-serif text-lg mt-4 text-champagne">分切</h4>
+          <p class="text-cream/60 text-xs mt-2 leading-relaxed">專業職人精細分切<br>滿足各種料理需求</p>
+        </div>
+        <div class="text-center fade-up">
+          <div class="w-16 h-16 mx-auto rounded-full border border-champagne/50 flex items-center justify-center font-serif text-champagne text-xl">肆</div>
+          <h4 class="font-serif text-lg mt-4 text-champagne">檢驗</h4>
+          <p class="text-cream/60 text-xs mt-2 leading-relaxed">嚴格抽檢<br>確保無菌無藥殘</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 產品目錄 ===== -->
+<section id="catalog" class="py-24 bg-charcoal border-y border-champagne/10">
+  <div class="max-w-7xl mx-auto px-5">
+    <p class="font-latin italic tracking-[.3em] text-rosegold text-sm text-center">PRODUCT CATALOG</p>
+    <h2 class="font-serif font-black text-3xl md:text-4xl text-center mt-3">全豬解剖學：宏觀藍圖</h2>
+    <div class="gold-line max-w-xs mx-auto my-8"></div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12" role="tablist" aria-label="產品分類">
+      <button class="tab-btn active px-5 py-2.5 border border-champagne/30 rounded-sm text-sm tracking-wider transition" data-tab="front" role="tab" aria-selected="true">前段｜肩胛・前腿</button>
+      <button class="tab-btn px-5 py-2.5 border border-champagne/30 rounded-sm text-sm tracking-wider transition" data-tab="mid" role="tab" aria-selected="false">中段｜背脊・腹脅</button>
+      <button class="tab-btn px-5 py-2.5 border border-champagne/30 rounded-sm text-sm tracking-wider transition" data-tab="rear" role="tab" aria-selected="false">後段｜後腿</button>
+      <button class="tab-btn px-5 py-2.5 border border-champagne/30 rounded-sm text-sm tracking-wider transition" data-tab="rare" role="tab" aria-selected="false">珍稀與精華</button>
+    </div>
+
+    <!-- 前段 -->
+    <div class="tab-panel grid md:grid-cols-3 gap-6" data-panel="front">
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">梅花肉</h3>
+          <p class="text-cream/70 text-sm mt-2 leading-relaxed">位於肩胛上半部，瘦肉中帶有漂亮油花，肥瘦比例極佳。</p>
+          <p class="text-xs mt-4 text-rosegold tracking-wider">最佳應用｜全能型食材：煎・煮・炒・烤・燉皆宜</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">前腿肉（胛心肉）</h3>
+          <p class="text-cream/70 text-sm mt-2 leading-relaxed">俗稱「ㄍㄚˋ心」。脂肪較少、肉質結實偏瘦、帶嚼勁。</p>
+          <p class="text-xs mt-4 text-rosegold tracking-wider">最佳應用｜滷肉・燉肉・需要肉感嚼勁的料理</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm p-6 transition fade-up">
+        <h3 class="font-serif text-xl text-champagne">其他精華</h3>
+        <ul class="mt-4 space-y-4 text-sm text-cream/70 leading-relaxed">
+          <li><span class="text-champagne">胛心排</span>｜貌似梅花、肉量豐富的排骨（煮湯／紅燒）</li>
+          <li><span class="text-champagne">小前腱</span>｜脂肪極低、筋膜發達、強烈嚼勁（滷味／涼拌）</li>
+          <li><span class="text-champagne">前腳</span>｜包含前蹄膀，肉多且嫩（滷豬腳）</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- 中段 -->
+    <div class="tab-panel hidden grid md:grid-cols-3 gap-6" data-panel="mid">
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">小里肌（腰內肉）</h3>
+          <p class="text-cream/70 text-sm mt-2 leading-relaxed">背脊骨下的精瘦肉。無筋、口感最細緻、脂肪含量極低。</p>
+          <p class="text-xs mt-4 text-rosegold tracking-wider">應用首選｜炸豬排・快炒</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">里肌（大排）／五花肉（中肉）</h3>
+          <p class="text-cream/70 text-sm mt-2 leading-relaxed">里肌肉質鮮嫩、脂肪適中，炸豬排首選；五花肥瘦交疊數層、油脂豐厚。</p>
+          <p class="text-xs mt-4 text-rosegold tracking-wider">應用｜厚切大排・烤肉・火鍋・紅燒</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <p class="font-latin italic text-rosegold tracking-widest text-xs">CONNOISSEUR'S NOTE</p>
+          <h3 class="font-serif text-xl text-champagne mt-2">行家註記：翅仔肉（二層肉）</h3>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">位於里肌交接處，口感激似珍稀松阪肉，是行家與老饕的指定部位。</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- 後段 -->
+    <div class="tab-panel hidden grid md:grid-cols-3 gap-6" data-panel="rear">
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">後腿肉</h3>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">瘦肉極多、油脂極少，全無筋膜。是製作頂級絞肉、香腸與火腿的完美基底。</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">老鼠肉（中里肌）</h3>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">傳統市場的隱藏版極品。肉質極度軟嫩且無油脂，行家私藏首選。</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-xl text-champagne">蹄膀（腳庫）與後腳</h3>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">肉質結實、富含厚實表皮與極高膠質（膠原蛋白）。傳統紅燒、長時間慢滷首選。</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- 珍稀 -->
+    <div class="tab-panel hidden grid md:grid-cols-2 lg:grid-cols-4 gap-6" data-panel="rare">
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-lg text-champagne">松阪肉</h3>
+          <p class="text-xs text-rosegold mt-1 tracking-wider">黃金六兩肉</p>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">一隻豬僅有兩塊，油花媲美頂級牛肉，口感爽脆。</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-lg text-champagne">嘴邊肉</h3>
+          <p class="text-xs text-rosegold mt-1 tracking-wider">黑白切聖品</p>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">油脂不多但口感極度軟嫩，老饕最愛。</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-lg text-champagne">豬頭皮・腳筋</h3>
+          <p class="text-xs text-rosegold mt-1 tracking-wider">濃郁膠質</p>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">腳筋彈牙有嚼勁；豬皮是熬煮濃郁湯頭的秘密武器。</p>
+        </div>
+      </article>
+      <article class="gold-frame bg-panel/60 rounded-sm overflow-hidden transition fade-up">
+        <div class="p-6">
+          <h3 class="font-serif text-lg text-champagne">大骨・尾冬骨</h3>
+          <p class="text-xs text-rosegold mt-1 tracking-wider">湯底靈魂</p>
+          <p class="text-cream/70 text-sm mt-3 leading-relaxed">帶有特殊肉香與膠質，是頂級高湯的基石。</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== B2B 商用分切 ===== -->
+<section id="b2b" class="py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <p class="font-latin italic tracking-[.3em] text-rosegold text-sm text-center">B2B SOLUTIONS</p>
+    <h2 class="font-serif font-black text-3xl md:text-4xl text-center mt-3">商用分切與職人加工</h2>
+    <p class="text-center text-cream/60 text-sm mt-4">根據終端餐飲與加工需求，提供精準的大品分切與高品質副產品。</p>
+    <div class="gold-line max-w-xs mx-auto my-8"></div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="gold-frame bg-panel/60 rounded-sm p-7 transition fade-up">
+        <h3 class="font-serif text-xl text-champagne">精準薄切</h3>
+        <p class="text-cream/70 text-sm mt-3 leading-relaxed">火鍋片（薄透瞬熟）／烤肉片（厚實鎖汁）。涵蓋梅花、里肌、中肉、松阪。</p>
+      </div>
+      <div class="gold-frame bg-panel/60 rounded-sm p-7 transition fade-up">
+        <h3 class="font-serif text-xl text-champagne">料理基礎</h3>
+        <p class="text-cream/70 text-sm mt-3 leading-relaxed">赤肉絲／頂級絞肉。嚴選後腿肉等部位，筋膜少，維持口感一致性。</p>
+      </div>
+      <div class="gold-frame bg-panel/60 rounded-sm p-7 transition fade-up">
+        <h3 class="font-serif text-xl text-champagne">塊狀燉煮</h3>
+        <p class="text-cream/70 text-sm mt-3 leading-relaxed">胛心角／胛心排切丁。客製化厚度，滿足不同燉煮與紅燒需求。</p>
+      </div>
+      <div class="gold-frame bg-panel/60 rounded-sm p-7 transition fade-up">
+        <h3 class="font-serif text-xl text-champagne">風味加工品</h3>
+        <p class="text-cream/70 text-sm mt-3 leading-relaxed">蒜味香腸（真空包裝）／鹹豬肉。黃金比例肥瘦肉與獨家香料醃製。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 料理決策指南 ===== -->
+<section id="guide" class="py-24 bg-charcoal border-y border-champagne/10">
+  <div class="max-w-7xl mx-auto px-5">
+    <p class="font-latin italic tracking-[.3em] text-rosegold text-sm text-center">CULINARY GUIDE</p>
+    <h2 class="font-serif font-black text-3xl md:text-4xl text-center mt-3">肥瘦光譜儀</h2>
+    <p class="text-center text-cream/60 text-sm mt-4">依據您的口感偏好與健康需求，精準定位最佳食材。點選節點查看說明。</p>
+    <div class="gold-line max-w-xs mx-auto my-8"></div>
+
+    <!-- 光譜儀 -->
+    <div class="max-w-4xl mx-auto">
+      <div class="flex justify-between text-xs tracking-widest text-cream/60 mb-3">
+        <span>極度精瘦</span><span>豐厚油脂</span>
+      </div>
+      <div class="relative py-4">
+        <div class="spectrum-track"></div>
+        <div id="spectrumDots" class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-0"></div>
+      </div>
+      <div id="spectrumInfo" class="gold-frame bg-panel/70 rounded-sm p-6 mt-8 text-center min-h-[110px] transition">
+        <h3 class="font-serif text-xl text-champagne" id="specName">梅花肉</h3>
+        <p class="text-cream/70 text-sm mt-2" id="specDesc">完美平衡的均勻油花——全能型食材，煎煮炒烤燉皆宜。</p>
+      </div>
+    </div>
+
+    <!-- 決策矩陣 -->
+    <h3 class="font-serif text-2xl text-center mt-20">終極料理<span class="text-champagne">決策矩陣</span></h3>
+    <div class="overflow-x-auto mt-8 -mx-5 px-5">
+      <table class="matrix w-full min-w-[640px] max-w-4xl mx-auto text-sm text-center border-collapse">
+        <thead>
+          <tr class="text-champagne font-serif">
+            <th class="p-3 bg-panel/60">部位＼烹調</th>
+            <th class="p-3 bg-panel/60">快炒</th>
+            <th class="p-3 bg-panel/60">煎／烤</th>
+            <th class="p-3 bg-panel/60">火鍋／涮燙</th>
+            <th class="p-3 bg-panel/60">慢燉／紅燒</th>
+            <th class="p-3 bg-panel/60">炸物</th>
+          </tr>
+        </thead>
+        <tbody class="text-cream/80">
+          <tr><td class="p-3 text-champagne">梅花肉</td><td class="p-3">✓✓</td><td class="p-3">✓✓</td><td class="p-3">✓✓<span class="block text-xs text-muted">萬用</span></td><td class="p-3"></td><td class="p-3"></td></tr>
+          <tr><td class="p-3 text-champagne">胛心肉</td><td class="p-3">✓<span class="block text-xs text-muted">肉絲</span></td><td class="p-3"></td><td class="p-3"></td><td class="p-3">✓<span class="block text-xs text-muted">燉肉塊</span></td><td class="p-3"></td></tr>
+          <tr><td class="p-3 text-champagne">五花肉</td><td class="p-3"></td><td class="p-3">✓✓<span class="block text-xs text-muted">烤肉片</span></td><td class="p-3">✓</td><td class="p-3">✓✓<span class="block text-xs text-muted">紅燒肉</span></td><td class="p-3"></td></tr>
+          <tr><td class="p-3 text-champagne">里肌／小里肌</td><td class="p-3">✓</td><td class="p-3">✓✓<span class="block text-xs text-muted">厚切大排</span></td><td class="p-3"></td><td class="p-3"></td><td class="p-3">✓✓<span class="block text-xs text-muted">炸豬排</span></td></tr>
+          <tr><td class="p-3 text-champagne">後腿／老鼠肉</td><td class="p-3"></td><td class="p-3"></td><td class="p-3"></td><td class="p-3">✓✓</td><td class="p-3">✓<span class="block text-xs text-muted">加工香腸</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-center text-muted text-xs mt-6 max-w-2xl mx-auto leading-relaxed">
+      職人筆記：需要長時間熬煮請選「前／後腳、蹄膀」以釋放膠質；追求清爽快炒請選「小里肌、老鼠肉」。
+    </p>
+  </div>
+</section>
+
+<!-- ===== 聯絡我們 ===== -->
+<section id="contact" class="py-24">
+  <div class="max-w-5xl mx-auto px-5">
+    <p class="font-latin italic tracking-[.3em] text-rosegold text-sm text-center">CONTACT US</p>
+    <h2 class="font-serif font-black text-3xl md:text-4xl text-center mt-3">建立專屬您的頂級供應鏈</h2>
+    <p class="text-center text-cream/60 text-sm mt-4">從大規模餐飲採購到極致料理追求，歡迎與我們聯繫。</p>
+    <div class="gold-line max-w-xs mx-auto my-8"></div>
+
+    <div class="max-w-md mx-auto">
+      <div class="gold-frame bg-panel/60 rounded-sm p-8 transition">
+        <h3 class="font-serif text-xl text-champagne">竹記商行</h3>
+        <ul class="mt-6 space-y-4 text-sm text-cream/80">
+          <li><span class="text-muted tracking-widest text-xs block mb-1">電話</span><a href="tel:0910-148-587" class="text-lg hover:text-champagne transition">0910-148-587</a></li>
+          <li><span class="text-muted tracking-widest text-xs block mb-1">地址</span>300 新竹市延平路一段317巷6-1號</li>
+          <li><span class="text-muted tracking-widest text-xs block mb-1">LINE 快速詢價</span>
+            <a href="https://line.me/R/ti/p/%40302kbite" target="_blank" rel="noopener" class="inline-block mt-2 p-1.5 bg-cream rounded-sm hover:shadow-[0_0_20px_rgba(217,184,124,.5)] transition">
+              <img src="data:image/png;base64,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" alt="LINE 官方帳號 QR Code" class="w-32 h-32 block">
+            </a>
+            <p class="text-muted text-xs mt-2">掃描或點擊，加入 LINE 官方帳號</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-champagne/15 py-8 text-center text-muted text-xs tracking-widest">
+  © 2026 竹記商行｜頂級國產豬肉採購指南・從牧場到餐桌的極致要求
+</footer>
+
+<script>
+// ===== Tabs =====
+const tabs = document.querySelectorAll('.tab-btn');
+const panels = document.querySelectorAll('.tab-panel');
+tabs.forEach(btn => btn.addEventListener('click', () => {
+  tabs.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+  panels.forEach(p => p.classList.toggle('hidden', p.dataset.panel !== btn.dataset.tab));
+  document.querySelectorAll(`[data-panel="${btn.dataset.tab}"] .fade-up`).forEach(el => el.classList.add('show'));
+}));
+
+// ===== 肥瘦光譜儀 =====
+const cuts = [
+  { name:'小里肌',  pos:4,  desc:'細緻無筋——口感最細緻、脂肪含量極低，炸豬排與快炒首選。' },
+  { name:'後腿肉',  pos:14, desc:'紮實無脂——瘦肉極多、全無筋膜，頂級絞肉與香腸的完美基底。' },
+  { name:'胛心肉',  pos:26, desc:'帶嚼勁——脂肪較少、肉質結實，適合滷肉、燉肉。' },
+  { name:'老鼠肉',  pos:38, desc:'軟嫩——傳統市場隱藏版極品，極度軟嫩且無油脂。' },
+  { name:'梅花肉',  pos:50, desc:'完美平衡的均勻油花——全能型食材，煎煮炒烤燉皆宜。' },
+  { name:'里肌肉',  pos:63, desc:'外層帶油——肉質鮮嫩、脂肪適中，煎烤排骨與厚切料理。' },
+  { name:'松阪肉',  pos:74, desc:'密布雪花——黃金六兩肉，油花媲美頂級牛肉，口感爽脆。' },
+  { name:'五花肉',  pos:86, desc:'油脂層疊——肥瘦交疊數層，烤肉、火鍋、紅燒合選。' },
+  { name:'蹄膀',    pos:96, desc:'豐厚皮下脂肪——富含膠質，傳統紅燒與長時間慢滷首選。' }
+];
+const dotWrap = document.getElementById('spectrumDots');
+const specName = document.getElementById('specName');
+const specDesc = document.getElementById('specDesc');
+cuts.forEach((c, i) => {
+  const d = document.createElement('button');
+  d.className = 'spectrum-dot absolute -translate-x-1/2 -translate-y-1/2' + (c.name === '梅花肉' ? ' active' : '');
+  d.style.left = c.pos + '%';
+  d.setAttribute('aria-label', c.name);
+  d.title = c.name;
+  d.addEventListener('click', () => {
+    document.querySelectorAll('.spectrum-dot').forEach(x => x.classList.remove('active'));
+    d.classList.add('active');
+    specName.textContent = c.name;
+    specDesc.textContent = c.desc;
+  });
+  d.addEventListener('mouseenter', () => { specName.textContent = c.name; specDesc.textContent = c.desc; });
+  dotWrap.appendChild(d);
+});
+
+// ===== 滾動淡入 =====
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: .15 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
